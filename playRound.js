@@ -1,110 +1,85 @@
-const rockButton = document.querySelector(".rockButton"); 
-const paperButton = document.querySelector(".paperButton"); 
-const scissorsButton = document.querySelector(".scissorsButton");
-const resetBtn = document.querySelector("#reset"); 
-const playerPoints = document.querySelector("#playerScore"); 
-const compPoints = document.querySelector("#compScore");
+const rockButton = document.querySelector("#rock"); 
+const paperButton = document.querySelector("#paper"); 
+const scissorsButton = document.querySelector("#scissors"); 
+const playScore = document.querySelector("#playerScore");
+const computerScores = document.querySelector("#computerScore");  
 
 
 
 let playerScore = 0; 
 let compScore = 0; 
+let results; 
+
+function clickListener(event) {
+   const playerSelection = event.target.id; 
+   const computerSelection = computerPlay(); 
+   playRound(playerSelection, computerSelection); 
+
+ }
+ rockButton.addEventListener("click", clickListener);
+ paperButton.addEventListener("click", clickListener); 
+ scissorsButton.addEventListener("click", clickListener);  
+
+
+
 
 function computerPlay() {
-    playItems = new Array ("Rock", "Paper", "Scissors"); 
-   playItems = playItems [Math.floor(Math.random() * playItems.length)]; 
-   return playItems.toLowerCase(); 
+   playItems = new Array ("Rock", "Paper", "Scissors"); 
+  playItems = playItems [Math.floor(Math.random() * playItems.length)]; 
+  return playItems.toLowerCase(); 
 }
-
-
-rockButton.addEventListener("click", function() {
-   playRound("rock", computerPlay());
-});
-
-paperButton.addEventListener("click", function() {
-   playRound("paper", computerPlay());
-}); 
-
-scissorsButton.addEventListener("click", function() {
-   playRound("scissors", computerPlay());
-}); 
-
-
-
 /*function playerInput() { 
 let userInput = prompt ("Chose your weapon! Rock, Paper or Scissors. "); 
    return userInput; 
 } */
 
-let winRound; 
 
 function playRound(playerSelection, computerSelection) {
 // your code here!
-   winRound=''; 
+console.log(playerSelection); 
+console.log(computerSelection); 
 
 if(playerSelection === computerSelection) {
-   winRound = "Tie";
+   results = "Tie!"; 
+   console.log(results); 
 }
-   else if (computerSelection == "rock" && playerSelection == "scissors") {
-       winRound = "CPU Wins. You lost rock beats scissors. ";
+else if((playerSelection == "rock" && computerSelection == "scissors") || 
+       (playerSelection == "scissors" && computerSelection == "paper") || 
+       (playerSelection == "paper" && computerSelection == "rock"))
+{
+   playerScore +=1; 
+   console.log(playerScore); 
+   playScore.innerHTML = playerScore; 
 }
-   else if (computerSelection == "scissors" && playerSelection == "paper")  {
-       winRound = "CPU Wins. You lost scissors beats paper. ";
-}
-   else if (computerSelection == "paper" && playerSelection == "rock") {
-       winRound = "CPU Wins. You lost paper beats rock. ";
-}
-   else if (playerSelection == "rock" && computerSelection == "scissors") {
-       winRound = "You win. Rock has beats scissors. ";
-}
-   else if (playerSelection == "paper" && computerSelection == "rock") {
-       winRound = "You win. Paper beats rock. ";
-}
-   else if (playerSelection == "scissors" && computerSelection == "paper") {
-       winRound = "You win. Scissors beats paper. ";
+   else {
+   compScore += 1; 
+   console.log(compScore); 
+   computerScores.innerHTML = compScore; 
    }
-return winRound;   
+   checkWinner(); 
 }
 
 
-/*function game() { 
-let compPoints = "0"; 
-let playerPoints = "0"; 
-let roundResults = ""; 
-let endResults = ""; 
-let computerTurn = ""; 
-let playerTurn = ""; 
-
-for(let i = 0; i < 5; i++) {
-   computerTurn = computerPlay(); 
-   playerTurn = playerInput(); 
-
-console.log(playRound(playerTurn, computerTurn)); 
-   if(winRound.includes("CPU Wins")) {
-       compPoints++;
+function checkWinner() { 
+   if(playerScore == 5 && compScore == 5) {
+      (playerScore === compScore )
+      results = "Its a tie"; 
+      console.log(results); 
+      rockButton.removeEventListener("click", clickListener); 
+      paperButton.removeEventListener("click", clickListener); 
+      scissorsButton.removeEventListener("click", clickListener);
    }
-
-   else if (winRound.includes("You win")) { 
-       playerPoints++; 
+   else if (playerScore == 5 && playerScore > compScore) {
+      results = "Player Wins"
+      console.log(results); 
+      rockButton.removeEventListener("click", clickListener); 
+      paperButton.removeEventListener("click", clickListener); 
+      scissorsButton.removeEventListener("click", clickListener);
    }
-   else if (winRound.includes("Tie")) {
-       compPoints++; 
-       playerPoints++; 
-   }
+   else if (compScore == 5 && compScore > playerScore) { 
+      results = "CPU Wins" 
+      rockButton.removeEventListener("click", clickListener); 
+      paperButton.removeEventListener("click", clickListener); 
+      scissorsButton.removeEventListener("click", clickListener); 
+   } 
 }
-
-if(playerPoints === compPoints) { 
-   endResults = "Both Points are tied ";  
-}
-else if (playerPoints > compPoints) { 
-   endResults = "You've Won the game. "; 
-}
-
-else if (playerPoints < compPoints) {
-   endResults = "You've lost the AI has won. ";
-}
-
-return (endResults + "The Score is: " + playerPoints + " : " + compPoints); 
-}
-*/
-

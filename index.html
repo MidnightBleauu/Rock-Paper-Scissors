@@ -10,21 +10,24 @@
 
 </head>
 <body>
-    
-    <div class="container"> 
-        <div class="playerCards">
-           <div class="rockButton"> <img src=".//images/rock.jpg" height="250px"> </div>
-           <div class="paperButton"> <img src="images/paper.png" height="275px"> </div>
-           <div class="scissorsButton"> <img src=".//images/scissors.png" height="267px"> </div> 
-           </div>
+        <div id="buttonContainer"> 
+            <button id="rock">rock</button>
+            <button id="paper">paper</button>
+            <button id="scissors">scissors</button>
         </div>
   
-    <div class="scoreCounter"> 
-        <div id="playerScore"></div>
-        <div id="compScore"></div>
-    </div>
-    
+  
+        <div class="labels"> 
+            <div id="playerLabel">Player</div>
+            <div id="computerLabel">Computer</div>
+        </div>
 
+        <div class="scores">
+            <div id="playerScore">0</div>
+            <div id="computerScore">0</div>
+        </div>
+        
+        <div class="winnerLabel"></div>
 </body>
 <script src="playRound.js"></script>
 </html>
