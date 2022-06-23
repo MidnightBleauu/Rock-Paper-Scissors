@@ -10,24 +10,28 @@
 
 </head>
 <body>
-        <div id="buttonContainer"> 
-            <button id="rock">rock</button>
-            <button id="paper">paper</button>
-            <button id="scissors">scissors</button>
-        </div>
-  
-  
-        <div class="labels"> 
-            <div id="playerLabel">Player</div>
-            <div id="computerLabel">Computer</div>
-        </div>
+    
+    <div class="gameContainer"> 
+            <div class="labels"> 
+                <div id="playerLabel">Player</div>
+                <div id="computerLabel">Computer</div>
+            </div>
 
-        <div class="scores">
-            <div id="playerScore">0</div>
-            <div id="computerScore">0</div>
+            <div class="scores">
+                <div id="playerScore">0</div>
+                <div id="computerScore">0</div>
+            </div>
+    </div>
+        <div class="buttonContainer"> 
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
         </div>
-        
-        <div class="winnerLabel"></div>
+    <div class="winnerLabel">
+        <h1 id="whoWins"></h1>
+    </div>
+
+    <button id="resetButton">Reset</button> 
 </body>
-<script src="playRound.js"></script>
+<script src="rps.js"></script>
 </html>
